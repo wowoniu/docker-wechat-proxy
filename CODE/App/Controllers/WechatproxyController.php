@@ -35,7 +35,7 @@ class WechatproxyController extends Controller {
             $this->response->end("");
         }
         $count=0;
-        while(UtilService::asyncLocked($requestId)||$count<=5){
+        while(UtilService::asyncLocked($requestId)||$count<=10){
             Swoole\Coroutine::sleep(1);
             $count++;
         }
