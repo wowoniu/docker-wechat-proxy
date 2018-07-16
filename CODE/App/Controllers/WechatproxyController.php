@@ -13,7 +13,7 @@ class WechatproxyController extends Controller {
         if($this->request->get['echostr']){
             //服务器初次与微信服务器通信验证 暂不做签名验证
             print_r("[S转发]服务器握手".PHP_EOL);
-            $this->response->end($this->request->get['echostr']);
+            //$this->response->end($this->request->get['echostr']);
         }
         $requestId=date('YmdHis');
         print_r("[S转发]$requestId".PHP_EOL);
