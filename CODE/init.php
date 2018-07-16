@@ -1,6 +1,7 @@
 <?php
 
 error_reporting(E_ERROR);
+date_default_timezone_set('PRC');
 require_once './Core/App.php';
 require_once './Core/Controller.php';
 require_once './Core/Request.php';

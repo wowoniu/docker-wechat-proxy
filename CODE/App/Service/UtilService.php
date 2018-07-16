@@ -18,7 +18,7 @@ class UtilService{
         $lockFile="./App/Cache/".$lockId.".lock";
         $res=unlink($lockFile);
         if(!$res){
-            print_r("锁文件删除失败" . PHP_EOL);
+            self::slog("锁文件删除失败");
         }
     }
 
@@ -55,5 +55,11 @@ class UtilService{
                 }
             }, $flags = 0);
         }
+    }
+
+    //服务端终端日志
+    static public function slog($msg){
+        $time = date('H:i:s ');
+        print_r($time.$msg.PHP_EOL);
     }
 }

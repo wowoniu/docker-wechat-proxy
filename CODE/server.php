@@ -9,7 +9,7 @@ $serv=new swoole_websocket_server("0.0.0.0",9566);
 $serv->set(array(
     'task_worker_num' => 1,
     'worker_num'=>4,
-    'max_request' => 1,//开发下 可以保证代码每次重新加载
+    //'max_request' => 10,//开发下 可以保证代码每次重新加载
 ));
 
 
