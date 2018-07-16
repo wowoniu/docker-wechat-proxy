@@ -11,7 +11,6 @@ class UtilService{
         }
         $lockFile="./App/Cache/".$lockId.".lock";
         file_put_contents($lockFile,'1');
-        sleep(1);
     }
 
     //清除异步锁
