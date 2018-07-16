@@ -9,7 +9,7 @@ $serv=new swoole_websocket_server("0.0.0.0",9566);
 $serv->set(array(
     'task_worker_num' => 1,
     'worker_num'=>4,
-    'max_request' => 10,//开发下 可以保证代码每次重新加载
+    'max_request' => 1,//开发下 可以保证代码每次重新加载
 ));
 
 
@@ -34,10 +34,12 @@ $serv->on('message', function (swoole_websocket_server $server, $frame) {
     echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
     //$server->push($frame->fd, json_encode(["url"=>"http://www.baidu.com"]));
     $data=json_decode($frame->data,true);
-    //清除异步锁
-    UtilService::clearAsyncLock($data['id']);
-    //数据缓存
-    UtilService::cache($data['id'],$data['response']);
+    if($data&&$data['id']){
+        //清除异步锁
+        UtilService::clearAsyncLock($data['id']);
+        //数据缓存
+        UtilService::cache($data['id'],$data['response']);
+    }
 });
 
 $serv->on('close', function ($ser, $fd) {
