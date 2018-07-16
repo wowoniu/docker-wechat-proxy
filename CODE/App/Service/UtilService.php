@@ -7,7 +7,7 @@ class UtilService{
     //设置异步锁
     static public function setAsyncLock($lockId){
         if(!is_dir('./App/Cache')){
-            mkdir('./App/Cache',777);
+            mkdir('./App/Cache',0777);
         }
         $lockFile="./App/Cache/".$lockId.".lock";
         file_put_contents($lockFile,'1');
@@ -17,7 +17,10 @@ class UtilService{
     //清除异步锁
     static public function clearAsyncLock($lockId){
         $lockFile="./App/Cache/".$lockId.".lock";
-        unlink($lockFile);
+        $res=unlink($lockFile);
+        if(!$res){
+            print_r("锁文件删除失败" . PHP_EOL);
+        }
     }
 
     //异步锁(通过文件进行锁处理)

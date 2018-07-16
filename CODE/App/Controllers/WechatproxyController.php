@@ -8,6 +8,7 @@ class WechatproxyController extends Controller {
 
     //微信请求转发至本地 请求下行
     public function tolocalAction(){
+        $context=$this;
         print_r("-------------------------------------------->".PHP_EOL);
         if($this->request->get['echostr']){
             //服务器初次与微信服务器通信验证 暂不做签名验证
@@ -40,11 +41,10 @@ class WechatproxyController extends Controller {
             $count++;
         }
         //异步获取文件缓存
-        $context=$this;
         $response=UtilService::cache($requestId);
         print_r("[S响应]".var_export($response,true)."" . PHP_EOL);
         print_r("-------------------------------------------->".PHP_EOL.PHP_EOL.PHP_EOL);
-        $context->response->end($response);
+        $this->response->end($response);
     }
 
     //本地请求转发至微信服务器 请求上行
