@@ -66,9 +66,9 @@ class QywechatproxyController extends Controller {
     //加密签名校验
     public function checkEncrypt()
     {
-        $token="7ZaERvIpwMYClfAT00UvmqgK8CW";
-        $encodingAesKey="rh4pgX2x7Rx6mX8micd53LRXKkI4sPPJUyw4tohJMHd";
-        $corpId="ww4b8172c0439ea4a4";
+        $token=$this->request->get['token']?:"7ZaERvIpwMYClfAT00UvmqgK8CW";
+        $encodingAesKey=$this->request->get['aeskey']?:"rh4pgX2x7Rx6mX8micd53LRXKkI4sPPJUyw4tohJMHd";
+        $corpId=$this->request->get['corpid']?:"ww4b8172c0439ea4a4";
         $sVerifyMsgSig = $this->request->get['msg_signature'];
         $sVerifyTimeStamp = $this->request->get["timestamp"];
         $sVerifyNonce = $this->request->get['nonce'];
