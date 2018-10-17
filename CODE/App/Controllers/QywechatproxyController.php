@@ -69,10 +69,10 @@ class QywechatproxyController extends Controller {
         $token="7ZaERvIpwMYClfAT00UvmqgK8CW";
         $encodingAesKey="rh4pgX2x7Rx6mX8micd53LRXKkI4sPPJUyw4tohJMHd";
         $corpId="ww4b8172c0439ea4a4";
-        $sVerifyMsgSig = $_GET['msg_signature'];
-        $sVerifyTimeStamp = $_GET["timestamp"];
-        $sVerifyNonce = $_GET['nonce'];
-        $sVerifyEchoStr = $_GET['echostr'];
+        $sVerifyMsgSig = $this->request->get['msg_signature'];
+        $sVerifyTimeStamp = $this->request->get["timestamp"];
+        $sVerifyNonce = $this->request->get['nonce'];
+        $sVerifyEchoStr = $this->request->get['echostr'];
         // 需要返回的明文
         $sEchoStr = "";
         $wxcpt = new WXBizMsgCrypt($token, $encodingAesKey, $corpId);
